@@ -80,6 +80,24 @@ for algo, times in results.items():
 
 
 
+import heapq
+
+def merge_k_lists(lists):
+    min_heap = []
+    for l in lists:
+        for item in l:
+            heapq.heappush(min_heap, item)
+
+    sorted_list = []
+    while min_heap:
+        sorted_list.append(heapq.heappop(min_heap))
+
+    return sorted_list
+
+
+lists = [[1, 4, 5], [1, 3, 4], [2, 6]]
+merged_list = merge_k_lists(lists)
+print("Відсортований список:", merged_list)  # Відсортований список: [1, 1, 2, 3, 4, 4, 5, 6]
 
 
 
