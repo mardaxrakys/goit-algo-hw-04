@@ -1,36 +1,6 @@
 import timeit
 import random
 
-def time_sorting_algorithm(sort_function, data):
-    start_time = timeit.default_timer()
-    sort_function(data)
-    return timeit.default_timer() - start_time
-
-# Приклад наборів даних
-sizes = [100, 1000, 5000, 10000]  # Розміри для тестування
-results = { 'merge_sort': [], 'insertion_sort': [], 'timsort': [] }
-
-for size in sizes:
-    data = [random.randint(0, 10000) for _ in range(size)]
-    
-    # Вимірювання часу для Merge Sort
-    data_copy = data.copy()
-    time_taken = time_sorting_algorithm(merge_sort, data_copy)
-    results['merge_sort'].append(time_taken)
-    
-    # Вимірювання часу для Insertion Sort
-    data_copy = data.copy()
-    time_taken = time_sorting_algorithm(insertion_sort, data_copy)
-    results['insertion_sort'].append(time_taken)
-    
-    # Вимірювання часу для Timsort
-    data_copy = data.copy()
-    time_taken = time_sorting_algorithm(lambda x: x.sort(), data_copy)
-    results['timsort'].append(time_taken)
-    
-print("Результати:")
-for algo, times in results.items():
-    print(f"{algo}: {times}")
 
 #------------------------------------------------------------------
 
@@ -63,10 +33,6 @@ def merge_sort(arr):
             arr[k] = R[j]
             j += 1
             k += 1
-
-
-
-
 #-------------------------------------------------------------------
 
 
@@ -78,3 +44,43 @@ def insertion_sort(arr):
             arr[j + 1] = arr[j]
             j -= 1
         arr[j + 1] = key
+
+#------------------------------------------------------------------
+
+def time_sorting_algorithm(sort_function, data):
+    start_time = timeit.default_timer()
+    sort_function(data)
+    return timeit.default_timer() - start_time
+
+# Приклад наборів даних
+sizes = [100, 1000, 5000, 10000]  # Розміри для тестування
+results = { 'merge_sort': [], 'insertion_sort': [], 'timsort': [] }
+
+for size in sizes:
+    data = [random.randint(0, 10000) for _ in range(size)]
+    
+    # Вимірювання часу для Merge Sort
+    data_copy = data.copy()
+    time_taken = time_sorting_algorithm(merge_sort, data_copy)
+    results['merge_sort'].append(time_taken)
+    
+    # Вимірювання часу для Insertion Sort
+    data_copy = data.copy()
+    time_taken = time_sorting_algorithm(insertion_sort, data_copy)
+    results['insertion_sort'].append(time_taken)
+    
+    # Вимірювання часу для Timsort
+    data_copy = data.copy()
+    time_taken = time_sorting_algorithm(lambda x: x.sort(), data_copy)
+    results['timsort'].append(time_taken)
+    
+print("Результати:")
+for algo, times in results.items():
+    print(f"{algo}: {times}")
+
+
+
+
+
+
+
